@@ -1,0 +1,27 @@
+version: '2'
+
+networks: 
+    demo:
+
+services:
+
+    lb:
+        image: nginx
+        container_name: lb
+        volumes:
+            - ./containers/nginx/proxy-pass.conf:/etc/nginx/nginx.conf
+        networks: 
+            - demo
+        ports:
+            - "80:80"
+    
+    web:
+        build: ./containers/web
+        volumes:
+            - ./src:/app
+        expose:
+            - "80"
+        networks: 
+            demo:
+                aliases:
+                    - backendapps
