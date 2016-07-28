@@ -3,6 +3,10 @@ version: '2'
 networks: 
     demo:
 
+volumes:
+  redis-data:
+    driver: local
+
 services:
 
     lb:
@@ -25,3 +29,15 @@ services:
             demo:
                 aliases:
                     - backendapps
+    redis:
+        image: redis
+        container_name: cache
+        volumes:
+            - redis-data:/data
+        ports:
+            - "6379:6379"
+        command: ["redis-server", "--appendonly", "yes"]
+
+        networks: 
+            - demo
+
