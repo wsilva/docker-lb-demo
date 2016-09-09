@@ -21,6 +21,7 @@ services:
     
     web:
         build: ./containers/web
+        image: wfsilva/flask-lb-demo
         volumes:
             - ./src:/app
         expose:
