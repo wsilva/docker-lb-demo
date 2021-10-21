@@ -1,6 +1,6 @@
-FROM python:2.7.10-wheezy
-RUN pip install Flask flask-mysqldb redis
+FROM python:3.10
+RUN pip3 install Flask flask-mysqldb redis
 VOLUME ["/app"]
 EXPOSE "80"
 WORKDIR /app
-CMD ["python", "app.py"]
+CMD ["python3", "app.py"]
